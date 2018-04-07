@@ -9,12 +9,14 @@ import { SpeechProvider } from '../../providers/speech/speech';
 })
 export class ContactPage implements OnInit{
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private speechProvider: SpeechProvider) {
 
   }
 
-  //sum: string[];
-
+  sum: string[];
+  answer: string;
+  correct: any;
+  MESSAGE: string;
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
     for(var i = 0; i < 2; i++){
@@ -50,15 +52,30 @@ export class ContactPage implements OnInit{
    
   }
 
+  answerQuestion(){
+    this.speechProvider.answerQuestion().subscribe(answers => {
+      this.MESSAGE = "PROCESSING";
+      if (answers.length > 1) {
+        for (let answer of answers) {
+          if (answer == this.answer) {
+            this.correct = true;
+          }
+        }
+      } else {
+        if (answers[0] == this.answer) {
+          this.correct = true;
+        }
+      }
+    });
+    
+    
+    
+  }
+
   ngOnInit():void{
-    var sum: string[] = this.generateSum(3);
-    var answer: string;
-    for(var i = 0; i < 4; i++){
-      var answer = this.generateAnswer(sum, i);
-      console.log(sum + " = " + answer);
-    }
-    
-    
+    this.sum = this.generateSum(1);
+    this.answer = this.generateAnswer(this.sum, 0);
+
   }
 
 }

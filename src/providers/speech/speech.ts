@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
 /*
@@ -11,7 +11,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 @Injectable()
 export class SpeechProvider {
 
-  constructor(public http: HttpClient, private sr: SpeechRecognition) {
+  constructor(private sr: SpeechRecognition) {
 
   }
 
@@ -32,31 +32,16 @@ export class SpeechProvider {
   }
 
   async hasPermission(): Promise<boolean> {
-    const permission = this.sr.hasPermission();
+    const permission = await this.sr.hasPermission();
 
     return permission;
   }
 
-  answerQuestion(question: string): boolean {
+  answerQuestion(): Observable<any> {
+    //let correct: boolean = false;
 
-    this.sr.startListening({ showPopup: false }).subscribe(answers => {
-      if (answers.length > 1) {
-        for (let answer of answers) {
-          if (answer == question) {
-            return true;
-          }
-        }
+    return this.sr.startListening({ showPopup: false });
 
-        return false;
-      } else {
-        if (answers[0] == question) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    });
-
-    return false;
+    //return correct;
   }
 }
