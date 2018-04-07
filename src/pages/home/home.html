@@ -1,17 +1,47 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="alive-bg">
+  <ion-card>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  </ion-card>
+
+  <ion-card class="custom-list box-shadow">
+    <ion-card-header text-center>
+      <h2>Game Modes</h2>
+    </ion-card-header>
+
+      <ion-list>
+        <button ion-item class="bg1">
+            <ion-thumbnail item-start>
+                <img src="https://png.icons8.com/metro/50/000000/plus-math.png">
+            </ion-thumbnail>
+          <h2>Addition Game</h2>
+        </button>
+        <button ion-item class="bg2">
+            <ion-thumbnail item-start>
+                <img src="https://png.icons8.com/metro/50/000000/minus-math.png">
+              </ion-thumbnail>
+         <h2>Subtraction Game</h2>
+        </button>
+    
+        <button ion-item class="bg3">
+            <ion-thumbnail item-start>
+                <img src="https://png.icons8.com/metro/50/000000/multiply.png">
+              </ion-thumbnail>
+              <h2> Multiplication Game</h2>
+        </button>
+    
+        <button ion-item class="bg4">
+            <ion-thumbnail item-start>
+                <img src="https://png.icons8.com/metro/50/000000/divide.png">
+              </ion-thumbnail>
+              <h2> Division Game</h2>
+        </button>
+
+        <button ion-item class="bg5">
+            <ion-thumbnail item-start>
+                <img src="https://png.icons8.com/metro/50/000000/math.png">
+              </ion-thumbnail>          
+              <h2>Ultimate Game</h2>
+        </button>
+      </ion-list>
+    </ion-card>
 </ion-content>
