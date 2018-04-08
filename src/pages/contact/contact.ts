@@ -67,9 +67,6 @@ export class ContactPage implements OnInit{
         }
       }
     });
-    
-    
-    
   }
 
   ngOnInit():void{
