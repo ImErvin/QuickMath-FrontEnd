@@ -1,10 +1,162 @@
 page-contact {
-    .bg3{
-        background: #00A6ED;
-        color: #fff;
+    .bg{
+        background: #e52d27;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #b31217, #e52d27);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #b31217, #e52d27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
+
+    .bg0{
+        background: repeating-radial-gradient(
+                    circle,
+                    #e65c00,
+                    #e65c00 10px,
+                    #F9D423 10px, 
+                    #F9D423 20px
+                    );
+    }
+
+    .bg1{
+        background: repeating-radial-gradient(
+                    circle,
+                    #FF9000,
+                    #FF9000 10px,
+                    #5F021F 10px, 
+                    #5F021F 20px
+                    );
+    }
+
+    .bg2{
+        background: repeating-radial-gradient(
+                    circle,
+                    #990033,
+                    #990033 10px,
+                    #8C001A 10px, 
+                    #8C001A 20px
+                    );
+    }
+
+    .bg3{
+        background: repeating-radial-gradient(
+                    circle,
+                    #17BEBB,
+                    #17BEBB 10px,
+                    #FFC914 10px, 
+                    #FFC914 20px
+                    );
+    }
+    
     .bg4{
-        background: #7FB800;
-        color: #fff;
-    } 
+        background: repeating-radial-gradient(
+                    circle,
+                    #39A0ED,
+                    #39A0ED 10px,
+                    #13C4A3 10px, 
+                    #13C4A3 20px
+                    );
+    }   
+
+    .bg5{
+        background: repeating-radial-gradient(
+                    circle,
+                    #FCBA04,
+                    #FCBA04 10px,
+                    #C2948A 10px, 
+                    #C2948A 20px
+                    );
+    }
+
+    .bg6{
+        background: repeating-radial-gradient(
+                    circle,
+                    #724CF9,
+                    #724CF9 10px,
+                    #CA7DF9 10px, 
+                    #CA7DF9 20px
+                    );
+    }
+
+    .bg7{
+        background: repeating-radial-gradient(
+                    circle,
+                    #A44200,
+                    #A44200 10px,
+                    #69140E 10px, 
+                    #69140E 20px
+                    );
+    }
+
+    .bg8{
+        background: repeating-radial-gradient(
+                    circle,
+                    #BDBF09,
+                    #BDBF09 10px,
+                    #D96C06 10px, 
+                    #D96C06 20px
+                    );
+    }
+
+    .bg9{
+        background: repeating-radial-gradient(
+                    circle,
+                    #BA2C73,
+                    #BA2C73 10px,
+                    #0F7173 10px, 
+                    #0F7173 20px
+                    );
+    }
+
+    .numberCard{
+        height: 20vh;
+    }
+
+    .numberCard-Content{
+        font-size: 15vw;
+        font-weight: bold;
+        color: white;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%); 
+    }
+
+    .mathSign{
+        font-size:20vw;
+        font-weight: bold;
+        color: white;
+        margin-top: 10px;
+    }
+
+    .object {
+        animation: MoveUpDown 1.5s linear infinite;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      .object1 {
+        animation: MoveDownUp 1.5s linear infinite;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      
+      @keyframes MoveDownUp {
+          0%, 100% {
+              bottom: 100%;
+          }
+          50% {
+              bottom: 0%;
+          }
+      }
+
+      @keyframes MoveUpDown {
+        0%, 100% {
+          bottom: 0%;
+        }
+        50% {
+          bottom: 100%;
+        }
+      }
+
+
+      
 }

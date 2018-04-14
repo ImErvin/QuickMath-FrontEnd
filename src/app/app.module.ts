@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SpeechProvider } from '../providers/speech/speech';
 
@@ -38,7 +39,8 @@ import { SpeechProvider } from '../providers/speech/speech';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SpeechRecognition,
-    SpeechProvider
+    SpeechProvider,
+    Camera
   ]
 })
 export class AppModule {}
