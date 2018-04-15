@@ -1,8 +1,6 @@
 page-contact {
     .bg{
-        background: #e52d27;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #b31217, #e52d27);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #b31217, #e52d27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #606c88;  /* fallback for old browsers */        
     }
 
     .bg0{
@@ -125,15 +123,70 @@ page-contact {
         margin-top: 10px;
     }
 
+    .timebar{
+        background: repeating-linear-gradient(
+                    45deg,
+                    #9933ff,
+                    #9933ff 10px,
+                    #66ffff 10px,
+                    #66ffff 20px
+                    );
+        animation: progressBar 10s infinite;
+        position: relative;
+        width: 3.4vw;
+        top: 50%;
+        left: 48%;
+        right: 45%;
+        transform: translateY(-50%); 
+        box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    }
+
+    .timebarbg{
+        background: #f0f1f4;
+        position: fixed;
+        z-index: -1;
+        width: 3.4vw;
+        height: 100vh;
+        top: 50%;
+        left: 48%;
+        right: 45%;
+        transform: translateY(-50%); 
+        box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    }
+
+    @keyframes progressBar {
+        0% { height: 0; }
+        5% { height: 5% }
+        10% { height: 10% }
+        15% { height: 15% }
+        20% { height: 20% }
+        25% { height: 25% }
+        30% { height: 30% }
+        35% { height: 35% }
+        40% { height: 40% }
+        45% { height: 45% }
+        50% { height: 50% }
+        55% { height: 55% }
+        60% { height: 60% }
+        65% { height: 65% }
+        70% { height: 70% }
+        75% { height: 75% }
+        80% { height: 80% }
+        85% { height: 85% }
+        90% { height: 90% }
+        95% { height: 95% }
+        100% { height: 100%; }
+      }
+
     .object {
-        animation: MoveUpDown 1.5s linear infinite;
+        animation: MoveUpDown 1s linear infinite;
         position: absolute;
         left: 0;
         bottom: 0;
       }
 
       .object1 {
-        animation: MoveDownUp 1.5s linear infinite;
+        animation: MoveDownUp 1s linear infinite;
         position: absolute;
         right: 0;
         bottom: 0;

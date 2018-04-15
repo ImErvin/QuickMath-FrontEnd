@@ -11,7 +11,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 export class ContactPage implements OnInit{
 
   constructor(public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
-
+    
   }
 
   sum: string[];
@@ -19,6 +19,9 @@ export class ContactPage implements OnInit{
   correct: boolean;
   answered: boolean;
   score: number;
+  end: boolean;
+  start: boolean;
+
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
     for(var i = 0; i < 2; i++){
@@ -86,12 +89,30 @@ export class ContactPage implements OnInit{
     this.sum = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, 0);
     this.answered = true;
+    console.log("new question")
+  }
+
+  endGame(): void{
+    this.end = true;
+  }
+
+  startGame(): void{
+    this.start = false;
+    this.end = false;
+    this.startTime();
+  }
+
+  startTime(): void{
+    setTimeout(() => { this.nextQuestion() }, 10000);
   }
 
   ngOnInit():void{
     this.sum = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, 0);
     this.score = 0;
+    this.end = true;
+    this.start = true;
+    //
   }
 
 }

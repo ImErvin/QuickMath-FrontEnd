@@ -1,4 +1,5 @@
 <ion-content class="bg">
+  <span *ngIf="!end">
       <ion-col class="object" col-6 text-center>
         <ion-card [ngClass]="['numberCard', 'bg'+sum[0]]">
           <ion-card-content center text-center class="numberCard-Content">
@@ -6,6 +7,12 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+      <div col-2 class="timebar">
+        
+      </div>
+      <div col-2 class="timebarbg">
+        
+      </div>
       <ion-col col-6 text-center class="object1">
         <ion-card [ngClass]="['numberCard', 'bg'+sum[1]]">
           <ion-card-content text-center class="numberCard-Content">
@@ -13,10 +20,11 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-
+  </span>
   <ion-footer>
     <ion-toolbar position="bottom">
-      <button ion-button full dark (click)="answerQuestion()" pull-bottom>Answer</button>
+      <button ion-button full dark *ngIf="!start" (click)="answerQuestion()" pull-bottom>Answer</button>
+      <button ion-button full dark *ngIf="start" (click)="startGame()" pull-bottom>Start Game</button>
       <ion-grid>
         <ion-row>
           <ion-col col-6 text-center>
