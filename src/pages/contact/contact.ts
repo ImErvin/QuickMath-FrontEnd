@@ -89,30 +89,29 @@ export class ContactPage implements OnInit{
     this.sum = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, 0);
     this.answered = true;
-    console.log("new question")
   }
 
   endGame(): void{
+    this.start = true;
     this.end = true;
   }
 
   startGame(): void{
     this.start = false;
     this.end = false;
+    this.score = 0;
     this.startTime();
   }
 
   startTime(): void{
-    setTimeout(() => { this.nextQuestion() }, 10000);
+    setTimeout(() => { this.endGame() }, 30000);
   }
 
   ngOnInit():void{
     this.sum = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, 0);
-    this.score = 0;
-    this.end = true;
     this.start = true;
-    //
+    this.end = false;
   }
 
 }
