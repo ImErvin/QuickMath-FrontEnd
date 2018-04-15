@@ -21,6 +21,11 @@ export class ContactPage implements OnInit{
   score: number;
   end: boolean;
   start: boolean;
+  cardBg: string[];
+  time: number;
+  difficulty: number;
+  difficultySelected: boolean[];
+  interval: any;
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -86,7 +91,8 @@ export class ContactPage implements OnInit{
   }
 
   nextQuestion(): void{
-    this.sum = this.generateSum(1);
+    this.sum = this.generateSum(this.difficulty);
+    this.cardBg = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, 0);
     this.answered = true;
   }
@@ -97,6 +103,9 @@ export class ContactPage implements OnInit{
   }
 
   startGame(): void{
+    this.sum = this.generateSum(this.difficulty);
+    this.cardBg = this.generateSum(1);
+    this.answer = this.generateAnswer(this.sum, 0);
     this.start = false;
     this.end = false;
     this.score = 0;
@@ -104,14 +113,34 @@ export class ContactPage implements OnInit{
   }
 
   startTime(): void{
+    this.resetTime();
+    this.interval = setInterval(() => { this.decrementTime() }, 1000);
     setTimeout(() => { this.endGame() }, 30000);
   }
 
+  decrementTime(): void{
+    if(this.time != 0){
+      this.time -= 1;
+    }else{
+      clearInterval(this.interval);
+    }
+  }
+
+  resetTime(): void{
+    this.time = 30;
+  }
+
+  setDifficulty(level): void{
+    this.difficulty = level;
+    console.log(this.difficulty);
+  }
+
   ngOnInit():void{
-    this.sum = this.generateSum(1);
-    this.answer = this.generateAnswer(this.sum, 0);
+    this.difficulty = 1;
+    this.difficultySelected = [true,false,false];
     this.start = true;
     this.end = false;
+    this.resetTime();
   }
 
 }
