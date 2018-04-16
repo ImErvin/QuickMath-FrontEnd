@@ -19,13 +19,17 @@ export class ContactPage implements OnInit{
   correct: boolean;
   answered: boolean;
   score: number;
+  scores: number[];
   end: boolean;
   start: boolean;
+  startMenu: boolean;
   cardBg: string[];
   time: number;
   difficulty: number;
   difficultySelected: boolean[];
   interval: any;
+  timeout: any;
+  gameMode: number;
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -47,14 +51,14 @@ export class ContactPage implements OnInit{
 
   generateAnswer(sum: string[], method: number): string{
     switch(method){
-      case 0:
-        return (parseInt(sum[0]) + parseInt(sum[1])).toString();
       case 1:
+        return (parseInt(sum[0]) + parseInt(sum[1])).toString();
+      case 2:
         sum = this.sortHighestToLowest(sum);
         return (parseInt(sum[0]) - parseInt(sum[1])).toString();
-      case 2:
-        return (parseInt(sum[0]) * parseInt(sum[1])).toString();
       case 3:
+        return (parseInt(sum[0]) * parseInt(sum[1])).toString();
+      case 4:
         sum = this.sortHighestToLowest(sum);
         return (parseInt(sum[0]) / parseInt(sum[1])).toString();
 
@@ -93,21 +97,24 @@ export class ContactPage implements OnInit{
   nextQuestion(): void{
     this.sum = this.generateSum(this.difficulty);
     this.cardBg = this.generateSum(1);
-    this.answer = this.generateAnswer(this.sum, 0);
+    this.answer = this.generateAnswer(this.sum, this.gameMode);
     this.answered = true;
   }
 
   endGame(): void{
     this.start = true;
     this.end = true;
+    clearInterval(this.interval);
+    clearTimeout(this.timeout);
   }
 
   startGame(): void{
     this.sum = this.generateSum(this.difficulty);
     this.cardBg = this.generateSum(1);
-    this.answer = this.generateAnswer(this.sum, 0);
+    this.answer = this.generateAnswer(this.sum, this.gameMode);
     this.start = false;
     this.end = false;
+    this.startMenu = false;
     this.score = 0;
     this.startTime();
   }
@@ -115,7 +122,7 @@ export class ContactPage implements OnInit{
   startTime(): void{
     this.resetTime();
     this.interval = setInterval(() => { this.decrementTime() }, 1000);
-    setTimeout(() => { this.endGame() }, 30000);
+    this.timeout = setTimeout(() => { this.endGame() }, 30000);
   }
 
   decrementTime(): void{
@@ -132,15 +139,25 @@ export class ContactPage implements OnInit{
 
   setDifficulty(level): void{
     this.difficulty = level;
-    console.log(this.difficulty);
+  }
+
+  setGameMode(mode): void{
+    this.gameMode = mode;
+  }
+
+  backButton(): void{
+    this.start = true;
+    this.end = false;
+    this.startMenu = true;
+    this.resetTime();
   }
 
   ngOnInit():void{
     this.difficulty = 1;
+    this.gameMode = 1;
+    this.scores = [10,10,10];
     this.difficultySelected = [true,false,false];
-    this.start = true;
-    this.end = false;
-    this.resetTime();
+    this.backButton();
   }
 
 }

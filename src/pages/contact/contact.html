@@ -1,66 +1,109 @@
 <ion-content class="bg">
-
-  <ion-card m5 *ngIf="end">
-    <ion-card-header text-center>
-      <span style="font-weight: bold; font-size: 5vh;">Game Over</span> 
-    </ion-card-header>
-    <ion-card-content text-center padding>
-        <span style="font-weight: bold; font-size: 3vh;">Score: {{score}}</span><br/><br/><br/>
-        <div>
-          <h4>Difficulty</h4>
-          <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#1f1f1f' : '#ffc2b3'}" (click)="setDifficulty(1)">Normal</button>
-          <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#1f1f1f' : '#ff3300'}" (click)="setDifficulty(2)">Hard</button>
-          <button ion-button [ngStyle]="{'background': difficulty == 3 ? '#1f1f1f' : '#b32400'}" (click)="setDifficulty(3)">Very Hard</button>
+    <ion-card m5 *ngIf="end">
+       <ion-card-header text-center style="background: #1f1f1f;color: #f1f1f1;">
+          <span style="font-weight: bold; font-size: 5vh;">Game Over</span>
+       </ion-card-header>
+       <ion-card-content text-center padding>
+          <span style="font-weight: bold; font-size: 3vh;">Score: {{score}}</span>
+          <br/>
+          <br/>
+          <br/>
+          <div>
+             <h4>Difficulty</h4>
+             <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#ffcc00' : '#eff0f5',
+             'color': difficulty == 1 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(1)">Normal</button>
+             <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#ff6600' : '#eff0f5',
+             'color': difficulty == 2 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(2)">Hard</button>
+             <button ion-button [ngStyle]="{'background': difficulty == 3 ? '#cc0000' : '#eff0f5',
+             'color': difficulty == 3 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(3)">Very Hard</button>
+             <hr/>
+          </div>
+          <ion-grid>
+             <ion-row>
+                <ion-col col-4>
+                   <button ion-button full (click)="backButton()" color="dark">Back</button>
+                </ion-col>
+                <ion-col col-8>
+                   <button ion-button full (click)="startGame()" color="dark">Restart Game</button>
+                </ion-col>
+             </ion-row>
+          </ion-grid>
+       </ion-card-content>
+    </ion-card>
+    <ion-card m5 *ngIf="startMenu">
+       <ion-card-header text-center style="background: #1f1f1f;color: #f1f1f1;">
+          <span style="font-weight: bold; font-size: 5vh;">Game Modes</span>
+       </ion-card-header>
+       <ion-card-content text-center padding>
+          <span style="font-weight: bold; font-size: 3vh">High Scores</span>
+          <br/>
+          <span style="font-weight: bold; font-size: 2vh;">Addition: {{scores[0]}}</span>
+          <br/>
+          <span style="font-weight: bold; font-size: 2vh;">Subtraction: {{scores[1]}}</span>
+          <br/>
+          <span style="font-weight: bold; font-size: 2vh;">Multiplication: {{scores[2]}}</span>
+          <br/>
+          <br/>
           <hr/>
-        </div>
-        <button ion-button full (click)="startGame()" color="dark">Restart Game</button>
-    </ion-card-content>
-  </ion-card>
-  <ion-col *ngIf="!start" class="object" col-6 text-center>
-    <ion-card [ngClass]="['numberCard', 'bg'+cardBg[0]]">
-      <ion-card-content center text-center class="numberCard-Content">
-        {{sum[0]}}
-      </ion-card-content>
+          <div>
+             <h4>Difficulty</h4>
+             <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#ffcc00' : '#eff0f5',
+             'color': difficulty == 1 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(1)">Normal</button>
+             <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#ff6600' : '#eff0f5',
+             'color': difficulty == 2 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(2)">Hard</button>
+             <button ion-button [ngStyle]="{'background': difficulty == 3 ? '#cc0000' : '#eff0f5',
+             'color': difficulty == 3 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(3)">Very Hard</button>
+             <hr/>
+             <button ion-button full *ngIf="start && !end" (click)="setGameMode(1)" [ngStyle]="{'background': gameMode == 1 ? '#00cc00' : '#eff0f5',
+             'color': gameMode == 1 ? '#f1f1f1' : '#1f1f1f'}">Addition Game</button>
+             <button ion-button full *ngIf="start && !end" (click)="setGameMode(2)" [ngStyle]="{'background': gameMode == 2 ? '#0066cc' : '#eff0f5',
+             'color': gameMode == 2 ? '#f1f1f1' : '#1f1f1f'}">Subtraction Game</button>
+             <button ion-button full *ngIf="start && !end" (click)="setGameMode(3)" [ngStyle]="{'background': gameMode == 3 ? '#9933ff' : '#eff0f5',
+             'color': gameMode == 3 ? '#f1f1f1' : '#1f1f1f'}">Multiplication Game</button>
+             <hr/>
+             <button ion-button full (click)="startGame()" color="dark">Start Game</button>
+          </div>
+       </ion-card-content>
     </ion-card>
-  </ion-col>
-  <ion-card no-shadow *ngIf="!start" col-2 class="signbar">
-    <ion-card-content class="signbar-Content">
-      <h1>
-        <ion-icon name="add" style="color: white"></ion-icon>
-      </h1>
-    </ion-card-content>
-  </ion-card>
-  <ion-col *ngIf="!start" col-6 text-center class="object1">
-    <ion-card [ngClass]="['numberCard', 'bg'+cardBg[1]]">
-      <ion-card-content text-center class="numberCard-Content">
-        {{sum[1]}}
-      </ion-card-content>
+    <ion-col *ngIf="!start" class="object" col-6 text-center>
+       <ion-card [ngClass]="['numberCard', 'bg'+cardBg[0]]">
+          <ion-card-content center text-center class="numberCard-Content">
+             {{sum[0]}}
+          </ion-card-content>
+       </ion-card>
+    </ion-col>
+    <ion-card no-shadow *ngIf="!start" col-2 class="signbar">
+       <ion-card-content class="signbar-Content">
+          <h1>
+             <ion-icon *ngIf="gameMode == 1" name="add" style="color: white"></ion-icon>
+             <ion-icon *ngIf="gameMode == 2" name="remove" style="color: white"></ion-icon>
+             <ion-icon *ngIf="gameMode == 3" name="close" style="color: white"></ion-icon>
+          </h1>
+       </ion-card-content>
     </ion-card>
-  </ion-col>
-  <ion-footer *ngIf="!end">
-    <ion-toolbar position="bottom" text-center>
-      <div *ngIf="start">
-        <h4>Difficulty</h4>
-        <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#1f1f1f' : '#ffc2b3'}" (click)="setDifficulty(1)">Normal</button>
-        <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#1f1f1f' : '#ff3300'}" (click)="setDifficulty(2)">Hard</button>
-        <button ion-button [ngStyle]="{'background': difficulty == 3 ? '#1f1f1f' : '#b32400'}" (click)="setDifficulty(3)">Very Hard</button>
-        <hr/>
-      </div>
-      <button ion-button full dark *ngIf="!start" (click)="answerQuestion()" color="dark">Answer</button>
-      <button ion-button full dark *ngIf="start && !end" (click)="startGame()" color="secondary">Start Game</button>
-      <ion-grid *ngIf="!end && !start">
-        <ion-row>
-          <ion-col col-4 text-center>
-            <ion-badge text-center color="primary">{{time}}</ion-badge>
-          </ion-col>
-          <ion-col col-4 text-center>
-            <ion-badge color="dark">{{score}}</ion-badge>
-          </ion-col>
-          <ion-col col-4 text-center>
-            <ion-badge color="secondary">{{correct}}</ion-badge>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-toolbar>
-  </ion-footer>
-</ion-content>
+    <ion-col *ngIf="!start" col-6 text-center class="object1">
+       <ion-card [ngClass]="['numberCard', 'bg'+cardBg[1]]">
+          <ion-card-content text-center class="numberCard-Content">
+             {{sum[1]}}
+          </ion-card-content>
+       </ion-card>
+    </ion-col>
+    <ion-footer shadow *ngIf="!end && !start">
+       <ion-toolbar position="bottom" text-center>
+          <button ion-button full *ngIf="!start" (click)="answerQuestion()" color="dark">Answer</button>
+          <ion-grid *ngIf="!end && !start">
+             <ion-row>
+                <ion-col col-4 text-center>
+                   <ion-badge text-center color="primary">{{time}}</ion-badge>
+                </ion-col>
+                <ion-col col-4 text-center>
+                   <ion-badge color="dark">{{score}}</ion-badge>
+                </ion-col>
+                <ion-col col-4 text-center>
+                   <button ion-button small clear (click)="endGame()" color="danger">Finish</button>
+                </ion-col>
+             </ion-row>
+          </ion-grid>
+       </ion-toolbar>
+    </ion-footer>
+ </ion-content>
