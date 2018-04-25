@@ -15,6 +15,7 @@ import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SpeechProvider } from '../providers/speech/speech';
 import { CameraProvider } from '../providers/camera/camera';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CameraProvider } from '../providers/camera/camera';
     SpeechProvider,
     Camera,
     CameraProvider,
-    CameraPreview
+    CameraPreview,
+    AuthProvider
   ]
 })
 export class AppModule {}
