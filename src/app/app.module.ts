@@ -9,10 +9,12 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { CameraPreview} from '@ionic-native/camera-preview';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SpeechProvider } from '../providers/speech/speech';
+import { CameraProvider } from '../providers/camera/camera';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SpeechProvider } from '../providers/speech/speech';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SpeechRecognition,
     SpeechProvider,
-    Camera
+    Camera,
+    CameraProvider,
+    CameraPreview
   ]
 })
 export class AppModule {}
