@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { SpeechProvider } from '../../providers/speech/speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
 
 @Component({
   selector: 'page-contact',
@@ -10,7 +11,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 })
 export class ContactPage implements OnInit{
 
-  constructor(public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
+  constructor(private cameraPreview: CameraPreview, public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
     
   }
 
@@ -34,7 +35,46 @@ export class ContactPage implements OnInit{
   responsefromcamera: any;
   picture: string;
 
- 
+  startCamera(): void{
+    const cameraPreviewOpts: CameraPreviewOptions = {
+      x: 0,
+      y: 0,
+      width: window.screen.width,
+      height: window.screen.height,
+      camera: 'rear',
+      tapPhoto: true,
+      previewDrag: false,
+      toBack: true,
+      alpha: 1
+    };
+
+
+
+        // start camera
+    this.cameraPreview.startCamera(cameraPreviewOpts).then(
+      (res) => {
+        this.responsefromcamera = res;
+      },
+      (err) => {
+        console.log(err)
+      });
+  }
+
+  takePicture(): void{
+    const pictureOpts: CameraPreviewPictureOptions = {
+      width: 1280,
+      height: 1280,
+      quality: 85
+    }
+
+    // take a picture
+    this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
+      this.picture = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+      this.picture = null;
+    });
+  }
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -172,6 +212,7 @@ export class ContactPage implements OnInit{
     this.scores = [10,10,10];
     this.difficultySelected = [true,false,false];
     this.backButton();
+    //this.startCamera();
   }
 
 }
