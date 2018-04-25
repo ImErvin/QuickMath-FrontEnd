@@ -87,4 +87,5 @@
     <plugin name="cordova-plugin-speechrecognition" spec="~1.1.2" />
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
     <allow-navigation href="http://10.12.17.45:8100" />
+    <plugin name="cordova-plugin-camera-preview" spec="~0.9.0" />
 </widget>
