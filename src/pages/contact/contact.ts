@@ -122,7 +122,7 @@ export class ContactPage implements OnInit{
   startTime(): void{
     this.resetTime();
     this.interval = setInterval(() => { this.decrementTime() }, 1000);
-    this.timeout = setTimeout(() => { this.endGame() }, 30000);
+    this.timeout = setTimeout(() => { this.endGame() }, 60000);
   }
 
   decrementTime(): void{
@@ -134,7 +134,7 @@ export class ContactPage implements OnInit{
   }
 
   resetTime(): void{
-    this.time = 30;
+    this.time = 60;
   }
 
   setDifficulty(level): void{

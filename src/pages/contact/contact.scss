@@ -139,37 +139,6 @@ page-contact {
         margin-bottom:auto;
         text-align:center;
     }
-    // .timebar{
-    //     background: repeating-linear-gradient(
-    //                 45deg,
-    //                 #9933ff,
-    //                 #9933ff 10px,
-    //                 #66ffff 10px,
-    //                 #66ffff 20px
-    //                 );
-    //     animation: progressBar 30s infinite;
-    //     position: relative;
-    //     width: 3.4vw;
-    //     top: 50%;
-    //     left: 48%;
-    //     right: 45%;
-    //     transform: translateY(-50%); 
-    //     box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-    // }
-
-
-    // .timebarbg{
-    //     background: #f0f1f4;
-    //     position: fixed;
-    //     z-index: -1;
-    //     width: 3.4vw;
-    //     height: 100vh;
-    //     top: 50%;
-    //     left: 48%;
-    //     right: 45%;
-    //     transform: translateY(-50%); 
-    //     box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-    // }
 
     @keyframes progressBar {
         0% { height: 0; }
@@ -196,14 +165,14 @@ page-contact {
       }
 
     .object {
-        animation: MoveUpDown 1s linear infinite;
+        animation: MoveUpDown 2s linear infinite;
         position: absolute;
         left: 0;
         bottom: 0;
       }
 
       .object1 {
-        animation: MoveDownUp 1s linear infinite;
+        animation: MoveDownUp 2s linear infinite;
         position: absolute;
         right: 0;
         bottom: 0;
