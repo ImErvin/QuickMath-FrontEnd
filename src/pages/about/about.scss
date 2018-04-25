@@ -1,3 +1,10 @@
 page-about {
+    .bg{
+        background: transparent;  /* fallback for old browsers */        
+    }
 
+    .potition-bottom{
+        position: absolute;
+        bottom: 0;
+    }
 }

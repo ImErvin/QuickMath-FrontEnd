@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 
 import { SpeechProvider } from '../../providers/speech/speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
-import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
 
 @Component({
   selector: 'page-contact',
@@ -11,7 +10,7 @@ import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, Camer
 })
 export class ContactPage implements OnInit{
 
-  constructor(private cameraPreview: CameraPreview, public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
+  constructor(public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
     
   }
 
@@ -35,44 +34,7 @@ export class ContactPage implements OnInit{
   responsefromcamera: any;
   picture: string;
 
-  startCamera(): void{
-    const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
-      width: 400,
-      height: 400,
-      camera: 'front',
-      tapPhoto: true,
-      previewDrag: true,
-      toBack: false,
-      alpha: 1
-    };
-
-        // start camera
-    this.cameraPreview.startCamera(cameraPreviewOpts).then(
-      (res) => {
-        this.responsefromcamera = res;
-      },
-      (err) => {
-        console.log(err)
-      });
-  }
-
-  takePicture(): void{
-    const pictureOpts: CameraPreviewPictureOptions = {
-      width: 1280,
-      height: 1280,
-      quality: 85
-    }
-
-    // take a picture
-    this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
-      this.picture = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      console.log(err);
-      this.picture = null;
-    });
-  }
+ 
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -204,6 +166,7 @@ export class ContactPage implements OnInit{
   }
 
   ngOnInit():void{
+    console.log(window.screen.height);
     this.difficulty = 1;
     this.gameMode = 1;
     this.scores = [10,10,10];
