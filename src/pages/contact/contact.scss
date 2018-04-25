@@ -164,15 +164,43 @@ page-contact {
         100% { height: 100%; }
       }
 
-    .object {
+    .object-speed1 {
         animation: MoveUpDown 2s linear infinite;
         position: absolute;
         left: 0;
         bottom: 0;
       }
 
-      .object1 {
+      .object1-speed1 {
         animation: MoveDownUp 2s linear infinite;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .object-speed2 {
+        animation: MoveUpDown 1.5s linear infinite;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      .object1-speed2 {
+        animation: MoveDownUp 1.5s linear infinite;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .object-speed3 {
+        animation: MoveUpDown 1s linear infinite;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      .object1-speed3 {
+        animation: MoveDownUp 1s linear infinite;
         position: absolute;
         right: 0;
         bottom: 0;

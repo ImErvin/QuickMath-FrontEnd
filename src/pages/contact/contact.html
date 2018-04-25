@@ -65,7 +65,7 @@
           </div>
        </ion-card-content>
     </ion-card>
-    <ion-col *ngIf="!start" class="object" col-6 text-center>
+    <ion-col *ngIf="!start" [ngClass]="[speed == 3 ? 'object-speed3' : speed == 2 ? 'object-speed2' : 'object-speed1']" col-6 text-center>
        <ion-card [ngClass]="['numberCard', 'bg'+cardBg[0]]">
           <ion-card-content center text-center class="numberCard-Content">
              {{sum[0]}}
@@ -81,7 +81,7 @@
           </h1>
        </ion-card-content>
     </ion-card>
-    <ion-col *ngIf="!start" col-6 text-center class="object1">
+    <ion-col *ngIf="!start" col-6 text-center [ngClass]="[speed == 3 ? 'object1-speed3' : speed == 2 ? 'object1-speed2' : 'object1-speed1']">
        <ion-card [ngClass]="['numberCard', 'bg'+cardBg[1]]">
           <ion-card-content text-center class="numberCard-Content">
              {{sum[1]}}

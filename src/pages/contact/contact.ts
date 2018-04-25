@@ -30,6 +30,7 @@ export class ContactPage implements OnInit{
   interval: any;
   timeout: any;
   gameMode: number;
+  speed: number;
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -86,6 +87,13 @@ export class ContactPage implements OnInit{
       if(correct){
         this.correct = true;
         this.score++;
+        if(this.score >= 0 && this.score <= 3){
+          this.speed = 1;
+        }else if(this.score >= 4 && this.score <= 6){
+          this.speed = 2;
+        }else{
+          this.speed = 3;
+        }
       }else{
         this.correct = false;
       }
@@ -112,6 +120,7 @@ export class ContactPage implements OnInit{
     this.sum = this.generateSum(this.difficulty);
     this.cardBg = this.generateSum(1);
     this.answer = this.generateAnswer(this.sum, this.gameMode);
+    this.speed = 1;
     this.start = false;
     this.end = false;
     this.startMenu = false;

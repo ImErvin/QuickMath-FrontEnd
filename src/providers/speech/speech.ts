@@ -38,10 +38,6 @@ export class SpeechProvider {
   }
 
   answerQuestion(): Observable<any> {
-    //let correct: boolean = false;
-
     return this.sr.startListening({ showPopup: false });
-
-    //return correct;
   }
 }
