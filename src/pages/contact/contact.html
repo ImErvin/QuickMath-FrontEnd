@@ -47,6 +47,8 @@
           <hr/>
           <div>
              <h4>Difficulty</h4>
+             <h4>{{responsefromcamera}}</h4>
+             <img src="{{picture}}"/>
              <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#ffcc00' : '#eff0f5',
              'color': difficulty == 1 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(1)">Normal</button>
              <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#ff6600' : '#eff0f5',
@@ -60,6 +62,8 @@
              'color': gameMode == 2 ? '#f1f1f1' : '#1f1f1f'}">Subtraction Game</button>
              <button ion-button full *ngIf="start && !end" (click)="setGameMode(3)" [ngStyle]="{'background': gameMode == 3 ? '#9933ff' : '#eff0f5',
              'color': gameMode == 3 ? '#f1f1f1' : '#1f1f1f'}">Multiplication Game</button>
+             <button ion-button full (click)="startCamera()">Start camera</button>
+             <button ion-button full (click)="takePicture()" color="secondaray">Take Picture</button>
              <hr/>
              <button ion-button full (click)="startGame()" color="dark">Start Game</button>
           </div>
