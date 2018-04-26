@@ -1,5 +1,6 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { User } from '../../model/user';
@@ -12,31 +13,26 @@ export class AuthProvider {
 
   constructor(private http: Http) { }
 
-  public registerUser(username: String, imageUrl: String): void {
+  public registerUser(username: String, imageUrl: String): Observable<User> {
     const credentials = {
       username: username,
       imageUrl: imageUrl
     };
 
-    this.http.post(`${this.baseURL}/accounts/register`, credentials)
+    return this.http.post(`${this.baseURL}/accounts/register`, credentials)
       .map((res) => res.json())
-      .subscribe((JSONResponse: User) => {
-        this.user = JSONResponse;
-        console.log('Logging out user from JSON response', this.user);
-      });
+      .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
   }
 
-  public loginUser(username: String, imageUrl: String): void {
+  public loginUser(username: String, imageUrl: String): Observable<User> {
     const credentials = {
       username: username,
       imageUrl: imageUrl
     };
 
-    this.http.post(`${this.baseURL}/accounts/login`, credentials)
+    return this.http.post(`${this.baseURL}/accounts/login`, credentials)
       .map((res) => res.json())
-      .subscribe((JSONResponse: User) => {
-        this.user = JSONResponse;
-        console.log('Logging out user from JSON response', this.user);
-      });
+      .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+      
   }
 }

@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -9,13 +10,14 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
-import { CameraPreview} from '@ionic-native/camera-preview';
+import { CameraPreview } from '@ionic-native/camera-preview';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SpeechProvider } from '../providers/speech/speech';
 import { CameraProvider } from '../providers/camera/camera';
 import { AuthProvider } from '../providers/auth/auth';
+import { Http } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AuthProvider } from '../providers/auth/auth';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,10 +45,10 @@ import { AuthProvider } from '../providers/auth/auth';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SpeechRecognition,
+    CameraPreview,
     SpeechProvider,
     Camera,
     CameraProvider,
-    CameraPreview,
     AuthProvider
   ]
 })

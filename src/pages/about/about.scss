@@ -8,4 +8,16 @@ page-about {
         bottom: 0;
         z-index: 5;
     }
+
+    .position-front{
+        z-index: 5;
+        position: absolute;
+        top: 5vh;
+    }
+
+    ion-card{
+        opacity: .4;
+    }
+
+
 }
