@@ -9,7 +9,7 @@
           <br/>
           <br/>
           <div>
-             <h4>Difficulty</h4>
+             <h4>Difficulty {{message}}</h4>
              <button ion-button [ngStyle]="{'background': difficulty == 1 ? '#ffcc00' : '#eff0f5',
              'color': difficulty == 1 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(1)">Normal</button>
              <button ion-button [ngStyle]="{'background': difficulty == 2 ? '#ff6600' : '#eff0f5',
@@ -53,6 +53,8 @@
              'color': difficulty == 2 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(2)">Hard</button>
              <button ion-button [ngStyle]="{'background': difficulty == 3 ? '#cc0000' : '#eff0f5',
              'color': difficulty == 3 ? '#f1f1f1' : '#1f1f1f'}" (click)="setDifficulty(3)">Very Hard</button>
+             <ion-badge color="primary" *ngIf="difficulty == 2">Hard - double points</ion-badge>
+             <ion-badge color="danger" *ngIf="difficulty == 3">Very Hard - <b>QUADRUPLE</b> points!</ion-badge>
              <hr/>
              <button ion-button full *ngIf="start && !end" (click)="setGameMode(1)" [ngStyle]="{'background': gameMode == 1 ? '#00cc00' : '#eff0f5',
              'color': gameMode == 1 ? '#f1f1f1' : '#1f1f1f'}">Addition Game</button>

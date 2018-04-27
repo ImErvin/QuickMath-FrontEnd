@@ -18,6 +18,7 @@ import { SpeechProvider } from '../providers/speech/speech';
 import { CameraProvider } from '../providers/camera/camera';
 import { AuthProvider } from '../providers/auth/auth';
 import { Http } from '@angular/http';
+import { ScoresProvider } from '../providers/scores/scores';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,9 @@ import { Http } from '@angular/http';
     SpeechProvider,
     Camera,
     CameraProvider,
-    AuthProvider
+    AuthProvider,
+    ScoresProvider,
+    ScoresProvider
   ]
 })
 export class AppModule {}

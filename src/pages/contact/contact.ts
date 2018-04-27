@@ -5,13 +5,15 @@ import { SpeechProvider } from '../../providers/speech/speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
 
+import { ScoresProvider } from '../../providers/scores/scores';
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
 export class ContactPage implements OnInit{
 
-  constructor(private cameraPreview: CameraPreview, public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition) {
+  constructor(public navCtrl: NavController, private speechProvider: SpeechProvider, private speechRecognition: SpeechRecognition, private scoresProvider: ScoresProvider) {
     
   }
 
@@ -34,47 +36,7 @@ export class ContactPage implements OnInit{
   speed: number;
   responsefromcamera: any;
   picture: string;
-
-  startCamera(): void{
-    const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
-      width: window.screen.width,
-      height: window.screen.height,
-      camera: 'rear',
-      tapPhoto: true,
-      previewDrag: false,
-      toBack: true,
-      alpha: 1
-    };
-
-
-
-        // start camera
-    this.cameraPreview.startCamera(cameraPreviewOpts).then(
-      (res) => {
-        this.responsefromcamera = res;
-      },
-      (err) => {
-        console.log(err)
-      });
-  }
-
-  takePicture(): void{
-    const pictureOpts: CameraPreviewPictureOptions = {
-      width: 1280,
-      height: 1280,
-      quality: 85
-    }
-
-    // take a picture
-    this.cameraPreview.takePicture(pictureOpts).then((imageData) => {
-      this.picture = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      console.log(err);
-      this.picture = null;
-    });
-  }
+  message: any;
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -130,14 +92,40 @@ export class ContactPage implements OnInit{
 
       if(correct){
         this.correct = true;
-        this.score++;
-        if(this.score >= 0 && this.score <= 3){
-          this.speed = 1;
-        }else if(this.score >= 4 && this.score <= 6){
-          this.speed = 2;
-        }else{
-          this.speed = 3;
+        switch(this.difficulty){
+          case 1:
+          this.score++;
+          if(this.score >= 0 && this.score <= 3){
+            this.speed = 1;
+          }else if(this.score >= 4 && this.score <= 6){
+            this.speed = 2;
+          }else{
+            this.speed = 3;
+          }
+          break;
+          case 2:
+          this.score += 2;
+          if(this.score >= 0 && this.score <= 6){
+            this.speed = 1;
+          }else if(this.score >= 6 && this.score <= 8){
+            this.speed = 2;
+          }else{
+            this.speed = 3;
+          }
+          break;
+          case 3:
+          this.score += 4;
+          if(this.score >= 0 && this.score <= 12){
+            this.speed = 1;
+          }else if(this.score >= 12 && this.score <= 16){
+            this.speed = 2;
+          }else{
+            this.speed = 3;
+          }
+          break;
         }
+        
+        
       }else{
         this.correct = false;
       }
@@ -158,6 +146,7 @@ export class ContactPage implements OnInit{
     this.end = true;
     clearInterval(this.interval);
     clearTimeout(this.timeout);
+    this.setScores();
   }
 
   startGame(): void{
@@ -205,14 +194,46 @@ export class ContactPage implements OnInit{
     this.resetTime();
   }
 
+  getScores(): void{
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    this.scores[0] = parseInt(user.additionScore);
+    this.scores[1] = parseInt(user.subtractionScore);
+    this.scores[2] = parseInt(user.multiplicationScore);
+  }
+
+  setScores(): void{
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    switch(this.gameMode){
+      case 1:
+        if(this.scores[0] < this.score){
+          this.scoresProvider.updateAddition(user.username, this.score);
+          this.scores[0] = this.score;
+        }
+        break;
+      case 2:
+        if(this.scores[1] < this.score){
+          this.scoresProvider.updateSubtraction(user.username, this.score);
+          this.scores[1] = this.score;
+        }
+        break;
+      case 3:
+        if(this.scores[2] < this.score){
+          this.scoresProvider.updateMultiplication(user.username, this.score);
+          this.scores[2] = this.score;
+        }
+        break;
+    }
+  }
+
   ngOnInit():void{
-    console.log(window.screen.height);
+    this.scores = [-1,-1,-1];
     this.difficulty = 1;
     this.gameMode = 1;
-    this.scores = [10,10,10];
     this.difficultySelected = [true,false,false];
     this.backButton();
-    //this.startCamera();
+    this.getScores();
   }
 
 }

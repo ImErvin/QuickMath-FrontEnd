@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
-import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions } from '@ionic-native/camera-preview';
 import { User } from '../../model/user';
 import { ContactPage } from '../contact/contact';
 
@@ -72,6 +72,8 @@ export class AboutPage implements OnInit{
       this.authProvider.loginUser(this.username, this.picture)
       .subscribe((JSONResponse: User) => {
         this.user = JSONResponse;
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(this.user));
         setTimeout(() => {
           this.navCtrl.push(ContactPage);
         }, 50);
@@ -88,7 +90,7 @@ export class AboutPage implements OnInit{
       this.authProvider.registerUser(this.username, this.picture)
       .subscribe((JSONResponse: User) => {
         this.user = JSONResponse;
-        this.message ='Logging out user from JSON response' + this.user;
+        this.message ='Welcome '+this.username+', please login.';
       }, (message: any) => {
         this.message = message;
       });
