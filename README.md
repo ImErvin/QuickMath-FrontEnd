@@ -20,9 +20,10 @@ The ScoreProvider supplies the game component with HTTP functions to contact the
 
 Finally the SpeechProvider is used to supply the Game component with functions for acquiring permissions to use the microphone.
 
-#### Gestures
+#### Gestures and Justification
 ##### Facial Recognition
 Using the native camera on your android device, you can take a photo ID that acts as your password to the username. This enables the use of a facial gesture to authenticate users. We chose to do this gesture because it seems like this is a field of authentication that is being developed rapidly. It also acts as a fun-feature for kids to authenticate themselves with the help of their parents.
 
 ##### Voice Recognition
-Using the native microphone on your android device and google assist Speech Recognition, you can record your answers to the math sums with a voice gesture.
+Using the native microphone on your android device and google assist Speech Recognition, you can record your answers to the math sums with a voice gesture. This allows users steer clear of the usual input boxes, which leads to keyboard popups, which hide the screen, which makes the game harder to play and so and so and it doesn't feel natural. You could argue to have cards with answers but that is basically an MCQ-type game where the answer is given to the user and this takes away the difficulty aspect. Voice was perfect!
+
