@@ -37,6 +37,8 @@ export class ContactPage implements OnInit{
   responsefromcamera: any;
   picture: string;
   message: any;
+  permission: boolean;
+  permissionMessage: string;
 
   generateSum(difficultyLevel: number): string[]{
     let sum: string[] = ["",""];
@@ -187,6 +189,28 @@ export class ContactPage implements OnInit{
     this.gameMode = mode;
   }
 
+  permissionHandler(): void{
+
+    this.speechProvider.isSpeechSupported().then((supported) =>{
+      if(supported){
+        this.speechProvider.hasPermission().then((permission) => {
+          if(!permission){
+            this.permissionMessage = "No permission granted."
+            this.speechProvider.getPermission();
+            this.permission = false;
+          }else{
+            this.permission = true;
+          }
+        });
+      }else{
+        this.permission = false;
+        this.permissionMessage = "Not supported sorry.";
+      }
+    })
+
+    
+  }
+
   backButton(): void{
     this.start = true;
     this.end = false;
@@ -228,6 +252,7 @@ export class ContactPage implements OnInit{
   }
 
   ngOnInit():void{
+    this.permissionHandler();
     this.scores = [-1,-1,-1];
     this.difficulty = 1;
     this.gameMode = 1;
