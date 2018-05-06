@@ -6,8 +6,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { CameraPreview } from '@ionic-native/camera-preview';
@@ -24,9 +22,7 @@ import { ScoresProvider } from '../providers/scores/scores';
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ContactPage
   ],
   imports: [
     BrowserModule,
@@ -37,9 +33,7 @@ import { ScoresProvider } from '../providers/scores/scores';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ContactPage
   ],
   providers: [
     StatusBar,
