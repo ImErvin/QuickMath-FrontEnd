@@ -30,3 +30,6 @@ Using the native microphone on your android device and google assist Speech Reco
 #### Conclusion
 Overall the project was very fun to do and it was great learning about recognition technologies. If we were to do it again, we might choose a different framework for the front-end as Ionic was giving us the biggest issues when trying to set up an environment where both team mates could debug the application.
 
+
+### Video Demo of the project
+https://www.youtube.com/watch?v=9fjCsax9fjQ
